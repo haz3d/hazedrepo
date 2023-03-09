@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# File : letitrain.sh
+# Author : haz3d <haz3dvfx@gmail.com>
+
+# set terminal to full screen
+printf "\e[?1049h"
+
+# hide cursor
+printf "\e[?25l"
+
+# set background to black
+printf "\e[40m"
+
+# set foreground to green
+printf "\e[32m"
+
+# create random characters
+chars=(0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
+
+while true; do
+  # get random character
+  rand_char=${chars[$((RANDOM % ${#chars[@]}))]}
+
+  # print character at random position and clear line
+  printf "\e[$((RANDOM % $(tput lines)));$((RANDOM % $(tput cols)))H$rand_char\e[K"
+
+  # sleep for a short time to slow down the effect
+  sleep 0.01
+done
+
